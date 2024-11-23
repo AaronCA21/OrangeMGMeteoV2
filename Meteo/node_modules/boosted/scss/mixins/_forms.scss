@@ -1,0 +1,178 @@
+// This mixin uses an `if()` technique to be compatible with Dart Sass
+// See https://github.com/sass/sass/issues/1873#issuecomment-152293725 for more details
+
+// scss-docs-start form-validation-mixins
+@mixin form-validation-state-selector($state) {
+  @if ($state == "valid" or $state == "invalid") {
+    .was-validated #{if(&, "&", "")}:#{$state},
+    #{if(&, "&", "")}.is-#{$state} {
+      @content;
+    }
+  } @else {
+    #{if(&, "&", "")}.is-#{$state} {
+      @content;
+    }
+  }
+}
+
+// Boosted mod: no .#{$state}-tooltip, so no need for `$tooltip-*` args
+@mixin form-validation-state($state, $color, $icon, $border-color: $color) {
+  // Boosted mod: valid ≠ invalid
+  @if $state == "valid" {
+    .#{$state}-feedback {
+      display: none;
+      @extend .visually-hidden; // Boosted mod: Do not visually display .valid-feedback
+    }
+
+    @if $enable-validation-icons {
+      :not(.quantity-selector) > .form-control {
+        @include form-validation-state-selector($state) {
+          padding-right: $input-height-inner;
+          background-image: escape-svg($icon);
+          background-repeat: no-repeat;
+          background-position: right subtract($input-height-inner-quarter, $input-border-width) top subtract($input-height-inner-quarter, $input-border-width);
+          background-size: $input-height-inner-half $input-height-inner-half;
+        }
+      }
+
+      .form-select {
+        @include form-validation-state-selector($state) {
+          &:not([multiple]):not([size]),
+          &:not([multiple])[size="1"] {
+            --#{$prefix}form-select-bg-icon: #{escape-svg($icon)};
+            padding-right: $form-select-feedback-icon-padding-end;
+            background-position: $form-select-bg-position, $form-select-feedback-icon-position;
+            background-size: $form-select-bg-size, $form-select-feedback-icon-size;
+          }
+        }
+      }
+
+      .form-control-color {
+        @include form-validation-state-selector($state) {
+          width: calc(#{$form-color-width} + #{$input-height-inner-half} + #{$input-height-inner-quarter} - #{$input-border-width}); // stylelint-disable-line function-disallowed-list
+        }
+      }
+    }
+  } @else {
+    .#{$state}-feedback {
+      display: none;
+      width: 100%;
+      margin-top: $form-feedback-margin-top;
+      @include font-size($form-feedback-font-size);
+      font-style: $form-feedback-font-style;
+      font-weight: $font-weight-bold; // Boosted mod
+      line-height: $form-feedback-line-height; // Boosted mod
+      color: $form-feedback-color; // Boosted mod
+      background-color: transparent; // Boosted mod
+
+      // Boosted mod: status should not rely on color only
+      @if $enable-validation-icons {
+        &::before {
+          flex-shrink: 0;
+          width: $form-feedback-icon-size;
+          height: $form-feedback-icon-size;
+          margin-top: 1px;
+          margin-right: map-get($spacers, 1);
+          content: "";
+          background: $form-feedback-icon-invalid no-repeat;
+        }
+      }
+    }
+
+    // Boosted mod: no .#{$state}-tooltip
+
+    @include form-validation-state-selector($state) {
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: flex; // Boosted mod
+      }
+    }
+
+    .form-control {
+      @include form-validation-state-selector($state) {
+        border-color: $border-color;
+
+        // Boosted mod: validation icon in .*-feedback
+
+        // Boosted mod: no box-shadow
+
+        // Boosted mod: focus styles don't match validation state
+
+        // Boosted mod: apply focus mixin to allow sufficient contrast between error field focused and non focused
+        &:focus {
+          @include focus-visible();
+          border-color: $border-color !important; // stylelint-disable-line declaration-no-important
+        }
+        // End mod
+      }
+    }
+
+    // Boosted mod: Change border-color when on error for form element QuantitySelector
+    .quantity-selector .form-control {
+      @include form-validation-state-selector($state) {
+        // stylelint-disable-next-line scss/selector-no-redundant-nesting-selector
+        & ~ button {
+          border-color: $border-color;
+        }
+      }
+    }
+    // End mod
+
+    // Boosted mod: no icon in background for textarea
+
+    .form-select {
+      @include form-validation-state-selector($state) {
+        border-color: $border-color;
+
+        // Boosted mod: no icon in background
+
+        // Boosted mod: no box-shadow
+
+        // Boosted mod: focus styles don't match validation state
+
+        // Boosted mod: apply focus mixin to allow sufficient contrast between error field focused and non focused
+        &:focus {
+          @include focus-visible();
+          border-color: $border-color !important; // stylelint-disable-line declaration-no-important
+        }
+        // End mod
+      }
+    }
+
+    .form-check-input {
+      @include form-validation-state-selector($state) {
+        filter: none; // Boosted mod: remove filter to avoid having a blue border (invert of red border)
+        border-color: $border-color;
+
+        &:checked,
+        &:active {
+          background-color: $color;
+        }
+
+        // Boosted mod: no box-shadow
+
+        // Boosted mod: label's color doesn't change
+      }
+    }
+    .form-check-inline .form-check-input {
+      ~ .#{$state}-feedback {
+        margin-left: .5em;
+      }
+    }
+  }
+  // End mod
+  .input-group {
+    > .form-control:not(:focus),
+    > .form-select:not(:focus),
+    > .form-floating:not(:focus-within) {
+      @include form-validation-state-selector($state) {
+        @if $state == "valid" {
+          z-index: 3;
+        } @else if $state == "invalid" {
+          z-index: 4;
+        }
+      }
+    }
+  }
+}
+// scss-docs-end form-validation-mixins
