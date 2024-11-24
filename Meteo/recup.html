@@ -1,0 +1,83 @@
+<canvas id="myChart" width="400" height="200"></canvas>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Données du graphique : Températures et icônes météo pour une journée
+    var data = {
+        labels: ['12h', '15h', '18h', '21h', '00h'], // Heures spécifiques
+        datasets: [{
+            data: [22, 24, 21, 19, 17], // Données de température
+            borderColor: 'rgba(75, 192, 192, 1)', // Couleur de la ligne
+            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Couleur de remplissage sous la ligne
+            borderWidth: 2,
+            tension: 0.4 // Lisser les lignes du graphique
+        }]
+    };
+
+    // Ajout des icônes de météo (plugin personnalisé)
+    var iconPlugin = {
+        id: 'customIconPlugin',
+        afterDraw: function(chart) {
+            var ctx = chart.ctx;
+            var xAxis = chart.scales.x;
+            var yAxisTop = chart.chartArea.top;
+
+            // Liste des icônes météo locales
+            var icons = [
+                'ressources/img/soleil.png', // Soleil
+                'ressources/img/nuage.png', // Nuageux
+                'ressources/img/pluie.png', // Pluie légère
+                'ressources/img/orage.png', // Orage
+                'ressources/img/nuit.png'  // Nuit claire
+            ];
+
+            // Dessiner les icônes au-dessus de chaque point de l'axe X
+            icons.forEach((icon, index) => {
+                var img = new Image();
+                img.src = icon;
+                var xPos = xAxis.getPixelForValue(index);
+                var imgSize = 30; // Taille des icônes
+
+                img.onload = function() {
+                    ctx.drawImage(img, xPos - imgSize / 2, yAxisTop - imgSize - 10, imgSize, imgSize);
+                };
+            });
+        }
+    };
+
+    // Options du graphique
+    var options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false // Supprime la légende (label)
+            }
+        },
+        layout: {
+            backgroundColor: '#ffffff' // Définit le fond du graphique en blanc
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false // Pas de grille pour l'axe X
+                }
+            },
+            y: {
+                beginAtZero: true, // Axe Y commence à 0
+                title: {
+                    display: true,
+                    text: 'Température (°C)' // Titre de l'axe Y
+                }
+            }
+        }
+    };
+
+    // Création du graphique avec Chart.js
+    var myChart = new Chart(ctx, {
+        type: 'line', // Type de graphique : "line"
+        data: data,
+        options: options,
+        plugins: [iconPlugin] // Ajout du plugin pour les icônes
+    });
+</script>

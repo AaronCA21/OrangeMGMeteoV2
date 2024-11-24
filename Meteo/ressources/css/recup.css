@@ -1,0 +1,64 @@
+/* Icônes */
+.columnV2Icone {
+    display: flex;
+    justify-content: center; /* Centrer l'icône */
+    align-items: center;
+    padding: 10px;
+}
+
+.weather-icon {
+    width: 50px; /* Taille fixe pour l'icône */
+    height: 50px; /* Taille fixe pour l'icône */
+}
+
+/* Jours et Conditions météo */
+.columnV2Jour {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.dayV2 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.weatherV2 {
+    font-size: 1em;
+    color: #555;
+}
+
+/* Températures */
+.columnV2Temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.temp {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Disposition générale des lignes */
+.rowV2 {
+    display: flex;
+    justify-content: space-between; /* Crée un espace égal entre chaque colonne */
+    align-items: center;
+    margin: 10px 0; /* Espace entre les lignes */
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .rowV2 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .columnV2Icone, .columnV2Jour, .columnV2Temp {
+        width: 100%; /* Assure que chaque colonne occupe toute la largeur de l'écran sur mobile */
+    }
+}
