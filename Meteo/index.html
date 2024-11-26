@@ -4969,78 +4969,10 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <div class="card-scroll-container" style="display: flex; overflow-x: hidden; width: 100%;">
-                                <!-- Cards -->
-                                <div class="card" style="width: 18rem; flex-shrink: 0;">
-                                    <div class="card" style="width: 18rem;">
-
-                                        <img src="ressources/img/jpg/Antalaha.jpg"
-                                            class="bd-placeholder-img card-img-top" alt="Image Placeholder" width="100%"
-                                            height="180">
-                                        <div class="card-body-V2">
-                                            <p class="card-text">
-                                            <div class="detail-city">Antalaha,</div>
-                                            <div class="detail-weather">peu nuageux</div>
-                                            <div class="detail-temp">NaN°C</div>
-                                            </p>
-                                        </div>
-
-
-
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 18rem; flex-shrink: 0;">
-                                    <!-- Card content -->
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="ressources/img/jpg/Antananarivo.jpg"
-                                            class="bd-placeholder-img card-img-top" alt="Image Placeholder" width="100%"
-                                            height="180">
-                                        <div class="card-body-V2">
-                                            <p class="card-text">
-                                            <div class="detail-city">Antananarivo,</div>
-                                            <div class="detail-weather">peu nuageux</div>
-                                            <div class="detail-temp">NaN°C</div>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 18rem; flex-shrink: 0;">
-                                    <!-- Card content -->
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="ressources/img/jpg/Antsirabe.jpg"
-                                            class="bd-placeholder-img card-img-top" alt="Image Placeholder" width="100%"
-                                            height="180">
-                                        <div class="card-body-V2">
-                                            <p class="card-text">
-                                            <div class="detail-city">Antsirabe,</div>
-                                            <div class="detail-weather">peu nuageux</div>
-                                            <div class="detail-temp">NaN°C</div>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="card" style="width: 18rem; flex-shrink: 0;">
-                                    <!-- Card content -->
-                                    <div class="card" style="width: 18rem;">
-                                        <img src="ressources/img/jpg/Diego.jpg" class="bd-placeholder-img card-img-top"
-                                            alt="Image Placeholder" width="100%" height="180">
-                                        <div class="card-body-V2">
-                                            <p class="card-text">
-                                            <div class="detail-city">Diego-Suarez,</div>
-                                            <div class="detail-weather">peu nuageux</div>
-                                            <div class="detail-temp">NaN°C</div>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- More cards here -->
+                                <!-- Cards will be dynamically added here -->
                             </div>
                         </div>
                     </div>
-
-                    <!-- Buttons to scroll the cards -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselCity"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -5053,30 +4985,9 @@
                     </button>
                 </div>
 
-                <script>
-                    document.querySelector('.carousel-control-prev').addEventListener('click', function () {
-                        const container = document.querySelector('.card-scroll-container');
-                        const card = document.querySelector('.card');
-                        const cardWidth = card.offsetWidth; // Récupère la largeur d'une carte
-                        const margin = parseInt(window.getComputedStyle(card).marginRight, 10); // Récupère la marge droite de la carte
-                        const totalCardWidth = cardWidth + margin; // Calcul de la largeur totale d'une carte (largeur + marge)
 
-                        container.scrollLeft -= totalCardWidth; // Défile une carte vers la gauche, en tenant compte de la marge
-                    });
-
-                    document.querySelector('.carousel-control-next').addEventListener('click', function () {
-                        const container = document.querySelector('.card-scroll-container');
-                        const card = document.querySelector('.card');
-                        const cardWidth = card.offsetWidth; // Récupère la largeur d'une carte
-                        const margin = parseInt(window.getComputedStyle(card).marginRight, 10); // Récupère la marge droite de la carte
-                        const totalCardWidth = cardWidth + margin; // Calcul de la largeur totale d'une carte (largeur + marge)
-
-                        container.scrollLeft += totalCardWidth; // Défile une carte vers la droite, en tenant compte de la marge
-                    });
-
-
-
-                </script>
+                <!--JS sur l'API-->
+                <script type="text/javascript" src="ressources/js/AaronCA21.js"></script>
             </div>
 
             <div class="container-base">
@@ -5193,8 +5104,8 @@
                             labels: ['12h', '15h', '18h', '21h', '00h'], // Heures spécifiques
                             datasets: [{
                                 data: [22, 24, 21, 19, 17], // Données de température
-                               borderColor: 'rgba(128, 0, 128, 1)', 
-                                backgroundColor: 'white', // Couleur de remplissage sous la ligne
+                                borderColor: 'rgba(128, 0, 128, 1)',
+                                backgroundColor: 'rgba(255, 255, 255)', // Couleur de remplissage sous la ligne
                                 borderWidth: 2,
                                 tension: 0.4 // Lisser les lignes du graphique
                             }]
@@ -5303,6 +5214,8 @@
             </div>
 
         </main>
+
+
 
 
     </div>

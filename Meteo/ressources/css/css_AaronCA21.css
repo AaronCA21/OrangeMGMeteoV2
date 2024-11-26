@@ -189,12 +189,6 @@
 }
 
 
-
-
-
-
-
-
 .chartV2 {
     position: relative; /* Assurez-vous que le conteneur peut gérer les éléments enfants correctement */
     top: 0; /* Positionne au-dessus du conteneur */
@@ -203,8 +197,6 @@
     flex-shrink: 0;
     width: 100%; /* Le conteneur prend toute la largeur disponible */
     height: 100%; /* Ajustez la hauteur selon vos besoins */
-    background-color: #e0e0e0; /* Couleur de fond personnalisable */
-    padding: 20px; /* Ajoutez un espace intérieur si nécessaire */
 }
 
 
@@ -213,19 +205,17 @@ canvas {
     /* Le canvas prend toute la largeur de son conteneur */
     height: 80% !important;
     /* Le canvas prend toute la hauteur de son conteneur */
+    background-color: white;
 }
 
 .detailsV2 {
+    margin-top: 10%;
     width: 100%;
-    /* Conteneur parent prend toute la largeur disponible */
     height: auto;
-    /* La hauteur s'adapte au contenu */
-    background-color: #f4f4f4;
     padding: 10px;
-    border-top: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    /* Dispose les éléments enfants (subDiv1, subDiv2) verticalement */
+    background-color: #fff;
 }
 
 .subDiv1,
