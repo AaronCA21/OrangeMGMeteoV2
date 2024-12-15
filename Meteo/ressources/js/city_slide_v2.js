@@ -16,6 +16,12 @@ $(document).ready(function(){
   let tabContent=[] ;
   /***************REPERE****************/
   checktimline() ;
+
+
+
+
+
+  
   function checktimline(){
     indentifiant=1 ;
     $('.wind-container.temp').empty() ;
@@ -26,7 +32,7 @@ $(document).ready(function(){
     $.get(url).done(function(data_check_line){
         data_check_line.sort() ;
         for (var i = 0; i <data_check_line.length ; i++){
-                if (list_city=="") {
+                if (list_city=="") {npm 
                   list_city=data_check_line[i] ;
                 }
                 else {

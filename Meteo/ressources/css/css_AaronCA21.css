@@ -1,6 +1,6 @@
-/*.container-top {
-   background-color: white;
-}*/
+.container{
+    padding : 0px;
+}
 .sticky-main {
     position: sticky;
     top: 0;
@@ -9,21 +9,28 @@
 
 .card-scroll-container {
     display: flex;
-    overflow-x: hidden;
     width: 100%;
     padding: 10px 0;
+    scroll-snap-type: x mandatory; /* Si vous voulez que chaque carte soit bien alignée */
+    -webkit-overflow-scrolling: touch; /* Pour les appareils iOS */
+}
+.card-scroll-container {
+    display: flex; /* Les cartes sont alignées en ligne */
+    overflow-x: auto; /* Activer le défilement horizontal */
+    scroll-behavior: smooth; /* Défilement fluide */
+    -webkit-overflow-scrolling: touch; /* Défilement tactile fluide sur iOS */
 }
 
 .card {
     width: 18rem;
     flex-shrink: 0;
     /* Ensure the cards don't shrink */
-    margin-right: 15px;
+    margin-right: 10px;
     /* Add spacing between cards */
 }
 
 /* Style pour card-body-V2 */
-.card-body-V2 {
+.card-body {
     background-color: #000;
     /* Fond noir */
     color: #fff;
@@ -34,14 +41,11 @@
 
 /* Style pour les détails */
 .detail-city,
-.detail-weather,
 .detail-temp {
     font-size: 1rem;
-    /* Taille de police par défaut */
+    
     color: #fff;
-    /* Texte par défaut en blanc */
     margin-bottom: 5px;
-    /* Ajoute un peu d'espace entre chaque élément */
 }
 
 /* Style spécifique pour detail-weather (en orange) */
@@ -56,11 +60,15 @@
 /* Si vous voulez modifier la taille ou le style des autres éléments, vous pouvez les personnaliser ici */
 .detail-city {
     font-size: 1.2rem;
+    
+    color: #fff;
     /* Plus grand si nécessaire */
 }
 
 .detail-temp {
     font-size: 1rem;
+    
+    color: #fff;
     /* Taille par défaut pour la température */
 }
 
@@ -197,6 +205,8 @@
     flex-shrink: 0;
     width: 100%; /* Le conteneur prend toute la largeur disponible */
     height: 100%; /* Ajustez la hauteur selon vos besoins */
+    padding : 1%;
+    background-color: #fff;
 }
 
 
@@ -209,7 +219,7 @@ canvas {
 }
 
 .detailsV2 {
-    margin-top: 10%;
+    margin-top: 1%;
     width: 100%;
     height: auto;
     padding: 10px;
@@ -312,6 +322,7 @@ canvas {
 
 .weatherV2 {
     align-item: left;
+    margin-top: 1%;
     font-size: 1em;
     color: #FF7900;
 }
@@ -323,16 +334,19 @@ canvas {
     align-items: left;
     padding: 10px;
     width: 40%;
-    /* La colonne des températures occupe 40% de la largeur de la ligne */
-    box-sizing: border-box;
-    /* S'assurer que le padding n'affecte pas la largeur */
+    margin-top : 
+    box-sizing : border-box;
 }
 
 .temp {
     font-size: 1.2em;
     font-weight: bold;
     color: #333;
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    justify-content: flex-start; /* Aligne à gauche */
 }
+
 
 /* Disposition générale des lignes */
 .rowV2 {
