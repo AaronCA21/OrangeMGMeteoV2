@@ -193,9 +193,12 @@
 .detail-weather {
     color: #FF7900;
     /* Orange pour la météo */
+    padding-top: 5px;
     font-size: 0.9rem;
 }
-
+.detail-temp{
+    padding-top: 5px;
+}
 
 .chartV2 {
     position: relative; /* Assurez-vous que le conteneur peut gérer les éléments enfants correctement */

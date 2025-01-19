@@ -16,23 +16,18 @@ $(document).ready(function(){
   let tabContent=[] ;
   /***************REPERE****************/
   checktimline() ;
-
-
-
-
-
-  
   function checktimline(){
     indentifiant=1 ;
     $('.wind-container.temp').empty() ;
     $('.city-to-slide').empty() ;
+    
     var url="https://www.orange.mg/api/pratique/meteo/locations" ;
     let list_city="";
     let x=0 ;
     $.get(url).done(function(data_check_line){
         data_check_line.sort() ;
         for (var i = 0; i <data_check_line.length ; i++){
-                if (list_city=="") {npm 
+                if (list_city=="") {
                   list_city=data_check_line[i] ;
                 }
                 else {
@@ -110,7 +105,7 @@ $(document).ready(function(){
             tabId.push(data_getInfoCity.cityName) ;
             tabContent.push('<div class="container-item-city" data_city="'+data_getInfoCity.cityName+'" data_id="" >'+
                 '<div class="img-city-page">'+
-                    '<div id="hexagon" style="background-image: url(https://www.orange.mg/madagascar_pages/uploads/1/img/'+exception(data_getInfoCity.cityName).replace(/\s/g, '')+'.jpg);">'+
+                    '<div id="hexagon" style="background-image: url(/madagascar_pages/uploads/1/img/'+exception(data_getInfoCity.cityName).replace(/\s/g, '')+'.jpg);">'+
                     '</div>'+
                 '</div>'+
                 '<div class="short-desc-page">'+
@@ -297,7 +292,7 @@ function chargeInfoPlus(location){
                     '</div>'+
                     '<div class="tmp-and-weather">'+
                       '<div class="tmp-pD">'+x+'-'+y+
-                      '°C<div class="icon-weather-pD" style="background-image: url(https://www.orange.mg/madagascar_pages/uploads/1/img/'+weather+'.svg)">'+
+                      '°C<div class="icon-weather-pD" style="background-image: url(/madagascar_pages/uploads/1/img/'+weather+'.svg)">'+
                       '</div>'+
                       '</div>'+
                     '</div>'+
@@ -369,7 +364,7 @@ function chargeInfoPlus(location){
               '<p style="font-weight:400 ;color:#A885D8 ;">'+date[0]+'</p>'+
             '</div>'+
             '<div class="weather-container" style="padding:10px ;">'+
-                  '<div class="first-section"><div class="icon-weather" style="background-image: url(https://www.orange.mg/madagascar_pages/uploads/1/img/'+weather_aside+'.svg); "></div><div style="font-weight:bold ;">'+data_for_aside.list[0].weather[0].description+'</div>'+
+                  '<div class="first-section"><div class="icon-weather" style="background-image: url(/madagascar_pages/uploads/1/img/'+weather_aside+'.svg); "></div><div style="font-weight:bold ;">'+data_for_aside.list[0].weather[0].description+'</div>'+
                   '</div>'+
                   '<p style="font-size:30px ;padding:5px ;font-weight:500; color:black ;">'+tempPredicat(data_for_aside.list[0].dt_txt.substring(11).split(':')[0],data_for_aside.list[0].main.temp.toFixed(2),data_for_aside.list[1].main.temp.toFixed(2),data_for_aside.list[2].main.temp.toFixed(2))+'°C</p>'+
             '</div>'+
@@ -586,14 +581,14 @@ function realTImeDataMeteo(local){
               hour_for_shart+=hour[0]+',00';
               data_temp_chart+=temp+','+data_extra.list[i+1].main.temp ;
               icon_meteo_container_COntent+='<div class="weather-container-per-hour">'+
-                                              '<div class="icon-weather-per-hour" style="background-image: url(https://www.orange.mg/madagascar_pages/uploads/1/img/'+weather+'.svg)"></div>'+
+                                              '<div class="icon-weather-per-hour" style="background-image: url(/madagascar_pages/uploads/1/img/'+weather+'.svg)"></div>'+
                                             '</div>';
             }
             else{
               hour_for_shart+=hour[0]+',' ;
               data_temp_chart+=temp+',' ;
               icon_meteo_container_COntent+='<div class="weather-container-per-hour">'+
-                                              '<div class="icon-weather-per-hour" style="background-image: url(https://www.orange.mg/madagascar_pages/uploads/1/img/'+weather+'.svg)"></div>'+
+                                              '<div class="icon-weather-per-hour" style="background-image: url(/madagascar_pages/uploads/1/img/'+weather+'.svg)"></div>'+
                                             '</div>';
             }
           }
